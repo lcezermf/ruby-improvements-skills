@@ -16,6 +16,9 @@ end
 ObscuringReferences.new([[622, 20], [622, 23], [559, 30], [559, 40]])
 
 # Correto
+# O Método #wheelify contêm o mínimo necessário para ler a estrutura de arrays e tornar em um código mais legível e mais fácil de se manter
+# o método #diameters agora fica melhor escrito, mais fácil de ler e ser mantido já que agora não faz referências diretas
+# aos valores e sim a comporamentos das instâncias de Wheel
 class RevealingReferences
   attr_reader :wheels
   def initialize(data)
