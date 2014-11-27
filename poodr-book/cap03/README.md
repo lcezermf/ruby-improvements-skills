@@ -21,3 +21,15 @@
 de instâncias de `Wheel`, sendo assim ela não é um classe que pode ser reutilizada, caso outra classe possua comportamentos como `diamenter`
 - Se alguma outra classe precisar realizar o cálculo de `gear_inches` essa classe `Gear` não poderá ser reutilizada por causa da dependências explicita
 - `Gear` não precisa saber o objeto que cálcula `diamenter` é um `Wheel` ele apenas precisa de um objeto que entenda e responda a `diameter`
+
+### Isolando as dependências `exemplo_03.rb`
+
+- Preferencialmente isole a criação de uma nova instância de outra classe
+  - Realizar a instanciação do novo objeto na inicialização do primeiro
+  - Criar um método para isolar a criação
+
+### Isolando chamada para métodos externos `example_03.rb`
+
+- Ocorre quando a classe que está sendo executada dentro de outra, faz chamada a seus métodos
+  - Classe A recebe B como dependência, a para o método A#x ela precisar internamente executar o método B#y, dependendo da situação, é preciso isolar a chamada do método B#y dentro de outro metodo em A- É importante
+- Caso mais pontos da classe A precisem da chamada ela está isolada em seu próprio método e ainda poderá facilitar futuras alterações e correções
