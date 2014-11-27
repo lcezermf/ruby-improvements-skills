@@ -99,3 +99,50 @@ class Gear
     wheel.diameter
   end
 end
+
+#############################
+#############################
+#############################
+
+### Remover a depêndencia de ordem de argumentos
+
+# A classe depende de muitos argumentos em determinada ordem, caso os argumentos sejam passados de forma errada, ocasionará um erro na classe
+# e qualquer mudança a argumentos irá se propagar por todos os pontos onde a classe for chamada
+
+class Gear
+  attr_reader :chainring, :cog, :rim, :tire
+  def initialize(chainring, cog, rim, tire)
+    @chainring = chainring
+    @cog = cog
+    @rim = rim
+    @tire = tire
+  end
+
+  def gear_inches
+    ratio * Wheel.new(rim, tire).diameter
+  end
+  def ratio
+    chainring / cog.to_f
+  end
+end
+
+Gear.new(1, 1, 1, 1)
+
+# Usando um hash de argumentos
+class Gear
+  attr_reader :chainring, :cog, :rim, :tire
+  def initialize(arguments = {})
+    @chainring = arguments[:chainring]
+    @cog = arguments[:cog]
+    @rim = arguments[:rim]
+    @tire = arguments[:tire]
+  end
+
+  def gear_inches
+    ratio * Wheel.new(rim, tire).diameter
+  end
+  def ratio
+    chainring / cog.to_f
+  end
+end
+Gear.new(chainring: 1, cog: 1, rim: 1, tire: 1)

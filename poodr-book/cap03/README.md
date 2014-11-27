@@ -33,3 +33,12 @@ de instâncias de `Wheel`, sendo assim ela não é um classe que pode ser reutil
 - Ocorre quando a classe que está sendo executada dentro de outra, faz chamada a seus métodos
   - Classe A recebe B como dependência, a para o método A#x ela precisar internamente executar o método B#y, dependendo da situação, é preciso isolar a chamada do método B#y dentro de outro metodo em A- É importante
 - Caso mais pontos da classe A precisem da chamada ela está isolada em seu próprio método e ainda poderá facilitar futuras alterações e correções
+- Se a classe B alterar o nome do seu método que é utilizado em A#x, a classe A só precisa fazer mudança em um lugar
+
+### Remover a depêndencia de ordem de argumentos `example_03.rb`
+
+- A inicialização de uma classe que recebe muitos argumentos é perigoso, pois se ao realizar a chamada para essa classe um dos valores for trocado, a classe não será instânciada, ou pior, se houver alguma mudanção nessa assinatura, ela irá se propagar para todos os lugares onde a classe é chamada
+- É importante utilizar um Hash de opções para criação de instâncias de classes
+- Usando um Hash, é completamente removida a dependências de ordem de argumentos
+- Caso seja necessário um novo argumento é só alterar o método #initialize da classe e passar o novo argumento ao hash
+- Deixa claro quais as dependências e onde ela são usadas
