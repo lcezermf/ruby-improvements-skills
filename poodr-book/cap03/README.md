@@ -42,3 +42,17 @@ de instâncias de `Wheel`, sendo assim ela não é um classe que pode ser reutil
 - Usando um Hash, é completamente removida a dependências de ordem de argumentos
 - Caso seja necessário um novo argumento é só alterar o método #initialize da classe e passar o novo argumento ao hash
 - Deixa claro quais as dependências e onde ela são usadas
+
+### Valores Default de forma explícita `example_03.rb`
+
+- Para um non-boolean uma das maneiras é utilizar o operador `||` que tem o mesmo efeito de OR
+- `[]` da class `Hash` irá retornar `nil` para caso de faltar a key passada, o que poderá ocasionar um erro caso o Hash passado não tenha a chave e seja usado a condição com `||`
+- Método `fetch` previne esse erro
+- Também é possível remover os defaults da inicialização de um objeto para um método privado,
+e esse método retornar um `hash` que usará o método `merge` para mergear valores diferentes informados na inicialização do novo objeto
+
+### Isolar multiparametros da inicialização `example_03.rb`
+
+- Em situações onde você não tem controle e não pode alterar a assinatura de um método, por exemplo de uma aplicação externa
+a melhor saída é criar um módulo que você tenha controle e realizar um wrapper sobre essa dependência externa
+- Criar um Wrapper remove a dependência externa e cria um interface da sua própria aplicação para manter esse contato com o outro serviço

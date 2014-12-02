@@ -39,7 +39,7 @@ class Gear
   end
 end
 
-# Alternativa 3
+# Alternativa 2
 class Gear
   attr_reader :chainring, :cog, :rim, :tire
   def initialize(chainring, cog, rim, tire)
@@ -146,3 +146,53 @@ class Gear
   end
 end
 Gear.new(chainring: 1, cog: 1, rim: 1, tire: 1)
+
+#############################
+#############################
+#############################
+
+# Valores Default de forma explícita
+
+# forma mais simples
+# Porém o uso de `||` não é muito eficiente e caso args[:one] seja `false` ou `nil` a condição irá retornar `true`
+def some(args)
+  @arg  = args[:one] || 1
+  @argg = args[:two] || 2
+end
+
+# forma mais segura e previne o error acima
+def some(args)
+  @arg  = args.fetch(:one, 1)
+  @argg = args.fetch(:two, 2)
+end
+
+# usando método privado com merge
+def some(args)
+  params = defaults.merge(args)
+  @name = params[:name]
+end
+private
+def defaults
+  { name: 'Luiz Cezer', age: 24 }
+end
+
+#############################
+#############################
+#############################
+
+# Isolar multiparametros da inicialização
+
+module SomeFramework
+  class Gear
+    def initialize(:chainring, :cog)
+      @chainring = chainring
+      @cog = cog
+    end
+  end
+end
+
+module WrapperGear
+  def self.gear
+    SomeFramework::Gear.new(args[:chainring], args[:cog])
+  end
+end

@@ -33,7 +33,7 @@ Gear.new(52, 11, 26, 1.5).gear_inches
 
 #CORRETO
 # Agora Gear não se importa com o objeto que ele utiliza, ele apenas quer um objeto que possa responder ao método diameter
-# A classe agora se torna menos acoplada a outra facilitando seu reuso e deixando mais reutilizável
+# A classe agora se torna menos acoplada a outra facilitando seu reuso
 class Gear
   attr_reader :chainring, :cog, :wheel
   def initialize(chainring, cog, wheel)
