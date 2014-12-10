@@ -21,5 +21,8 @@
   - Objetos com um contexto complexo, são complicados de reusar e testar
 
 - Lei de Demeter
-  - "Só converse com seu vizinho imediato" ou "Use apenas um `.`"
-  -
+  - 'Só converse com seu vizinho imediato' ou 'Use apenas um `.`'
+
+### Considerações finais
+
+- Interfaces públicas devem ser estáveis e expor somente `o que` o método faz, sem expor o `como`

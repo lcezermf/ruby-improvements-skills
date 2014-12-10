@@ -56,3 +56,9 @@ e esse método retornar um `hash` que usará o método `merge` para mergear valo
 - Em situações onde você não tem controle e não pode alterar a assinatura de um método, por exemplo de uma aplicação externa
 a melhor saída é criar um módulo que você tenha controle e realizar um wrapper sobre essa dependência externa
 - Criar um Wrapper remove a dependência externa e cria um interface da sua própria aplicação para manter esse contato com o outro serviço
+
+### Considerações finais
+
+- Injeção de dependências pode gerar objetos menos acoplados, que podem ser usados em outros contextos
+- Isolar a criação de dependências irá fazer os objetos se adaptarem mais facilmente a novas mudanças
+- Depender de classes que mudam pouco
