@@ -1,6 +1,6 @@
 =begin
-A nova implementação é melhor por não há tanta generalização da classe Pai, que agora é quebrada em duas,
-sendo assim as respectivas classes filhas herdam somente os métodos que necessitam
+A implementação apresenta problema, pois a classe Pai tem alguns métodos usados por Drive e alguns por Mechanic
+Ou seja as classes filhas são forçadas a herdarem métodos que não usam.
 =end
 class Car
   def open_door
@@ -10,9 +10,7 @@ class Car
   def start_engine
     puts 'vrumm'
   end
-end
 
-class CarInternals
   def change_engine
     puts 'tec tecc'
   end
@@ -29,12 +27,12 @@ class Driver < Car
   end
 end
 
-class Mechanic < CarInternals
-  def initialize(car_internals)
-    @car_internals = car_internals
+class Mechanic
+  def initialize(car)
+    @car = car
   end
 
   def fix
-    @car_internals.change_engine
+    @car.change_engine
   end
 end
