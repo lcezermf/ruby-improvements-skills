@@ -30,8 +30,16 @@ class Hero
     greeting
   end
 
+  def special_attack
+    unique_attack
+  end
+
   def unique_greeting_ling
     raise 'You must define unique_greeting_ling'
+  end
+
+  def unique_attack
+    raise 'You must define special_attack'
   end
 end
 
@@ -47,6 +55,10 @@ class Warrior < Hero
   def unique_greeting_ling
     'Warrior is ready to fight!'
   end
+
+  def unique_attack
+    'Hadouken!'
+  end
 end
 
 class Mage < Hero
@@ -56,5 +68,13 @@ class Mage < Hero
 
   def occupation_abilities
     [:magic_arrow]
+  end
+
+  def unique_greeting_ling
+    'Mage is ready to fight!'
+  end
+
+  def unique_attack
+    'Kamehameha!'
   end
 end
