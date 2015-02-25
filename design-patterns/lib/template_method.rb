@@ -23,6 +23,16 @@ class Hero
   def occupation_abilities
     []
   end
+
+  def greet
+    greeting = ['Hello']
+    greeting << unique_greeting_ling
+    greeting
+  end
+
+  def unique_greeting_ling
+    raise 'You must define unique_greeting_ling'
+  end
 end
 
 class Warrior < Hero
@@ -32,6 +42,10 @@ class Warrior < Hero
 
   def occupation_abilities
     [:strike]
+  end
+
+  def unique_greeting_ling
+    'Warrior is ready to fight!'
   end
 end
 
