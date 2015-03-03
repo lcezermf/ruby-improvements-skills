@@ -12,19 +12,19 @@ class Hero
     @skills = [:stealth, :driving, :intimidation]
   end
 
-  def print_stats(stats = nil)
-    printer.print(self)
+  def print_stats
+    printer.print(damage, health, skills)
   end
 end
 
 class BattleStats
-  def print(context)
-    "Damage: #{context.damage}\nHealth: #{context.health}"
+  def print(damage, health, skills)
+    "Damage: #{damage}\nHealth: #{health}"
   end
 end
 
 class SkillsStats
-  def print(context)
-    context.skills.map(&:capitalize).join("\n").concat("\n")
+  def print(damage, health, skills)
+    skills.map(&:capitalize).join("\n").concat("\n")
   end
 end
