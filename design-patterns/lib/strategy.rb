@@ -9,4 +9,8 @@ class Hero
 
     @skills = [:stealth, :driving, :intimidation]
   end
+
+  def print_stats
+    "Damage: #{damage}\nHealth: #{health}"
+  end
 end
