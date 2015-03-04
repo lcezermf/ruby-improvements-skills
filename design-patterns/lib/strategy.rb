@@ -21,14 +21,34 @@ class Hero
   end
 end
 
-class BattleStats
+class HTMLPrinter
   def print(damage, health, skills)
+    result = header
+    result += content(damage, health, skills)
+    result += footer
+  end
+
+  def header
+    '<html>'
+  end
+
+  def footer
+    '</html>'
+  end
+
+  def content
+    raise 'You must implement it!'
+  end
+end
+
+class BattleStats < HTMLPrinter
+  def content(damage, health, skills)
     "Damage: #{damage}\nHealth: #{health}"
   end
 end
 
-class SkillsStats
-  def print(damage, health, skills)
+class SkillsStats < HTMLPrinter
+  def content(damage, health, skills)
     skills.map(&:capitalize).join("\n").concat("\n")
   end
 end
