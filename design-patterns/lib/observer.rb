@@ -16,31 +16,39 @@ class Hero
     @health -= hit
   end
 
+  def update
+    damage(4)
+  end
+
   def discover(tile)
     if tile.cursed?
       @cursed = true
-      tile.add_cursed(self)
+      tile.add_observer(self)
     end
   end
 end
 
 class Tile
-  attr_reader :cursed_creatures
+  attr_reader :observers
 
   def initialize(attrs = {})
     @cursed = attrs.fetch(:cursed, false)
-    @cursed_creatures = []
+    @observers = []
   end
 
   def cursed?
     @cursed
   end
 
-  def add_cursed(creature)
-    @cursed_creatures << creature
+  def add_observer(observer)
+    @observers << observer
   end
 
   def activate_curse
-    cursed_creatures.each { |creature| creature.damage(4) }
+    notify_observers
+  end
+
+  def notify_observers
+    observers.each { |observer| observer.update }
   end
 end
