@@ -14,7 +14,7 @@ describe 'Interator Pattern' do
       item_two.cost = 10
 
       inventory.add(item_one)
-      inventory.add(item_one)
+      inventory.add(item_two)
     end
 
     it 'add items do collection' do
@@ -22,11 +22,9 @@ describe 'Interator Pattern' do
     end
 
     it 'can iterated and get total' do
-      iterator = InventoryIterator.new(inventory)
       result = 0
-      while iterator.has_next?
-        result += iterator.next.cost
-      end
+      inventory.each { |item| result += item.cost }
+      expect(result).to eq(30)
     end
   end
 

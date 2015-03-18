@@ -1,23 +1,23 @@
 # Behavior Pattern
 
-class InventoryIterator
+# class InventoryIterator
 
-  def initialize(inventory)
-    @items = inventory.items
-    @index = 0
-  end
+#   def initialize(inventory)
+#     @items = inventory.items
+#     @index = 0
+#   end
 
-  def has_next?
-    @index < @items.size
-  end
+#   def has_next?
+#     @index < @items.size
+#   end
 
-  def next
-    value = @items[@index]
-    @index +=1
-    value
-  end
+#   def next
+#     value = @items[@index]
+#     @index +=1
+#     value
+#   end
 
-end
+# end
 
 class Inventory
   attr_reader :items
@@ -30,6 +30,9 @@ class Inventory
     @items << item
   end
 
+  def each(&block)
+    @items.each(&block)
+  end
 end
 
 class Item
