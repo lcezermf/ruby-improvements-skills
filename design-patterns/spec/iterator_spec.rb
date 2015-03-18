@@ -21,6 +21,14 @@ describe 'Interator Pattern' do
       expect(inventory.items.size).to eq(2)
     end
 
+    it 'most expansive item' do
+      expansive = Item.new
+      expansive.cost = 100
+      inventory.add(expansive)
+
+      expect(inventory.max).to eq(expansive)
+    end
+
     it 'can iterated and get total' do
       result = inventory.inject(0) { |sum, item| sum + item.cost }
       expect(result).to eq(30)
