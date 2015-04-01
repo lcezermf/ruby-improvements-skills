@@ -3,6 +3,22 @@ require_relative '../lib/command'
 
 describe 'Command Pattern' do
 
+  describe Reactor do
+    it 'it fixed if commands are executed in the right order' do
+      computer = Computer.new
+      computer.add_command(AmplifyShieldCommand.new)
+      computer.add_command(CalibrateDriverCommand.new)
+      computer.add_command(TestCompilerCommand.new)
+      computer.add_command(InstallRegulatorCommand.new)
+
+      reactor = Reactor.new
+      expect(reactor.functional?).to be_falsy
+
+      reactor.fix(computer.execute)
+      expect(reactor.functional?).to be_truthy
+    end
+  end
+
   describe Computer do
     let(:computer) { Computer.new }
 
@@ -13,6 +29,15 @@ describe 'Command Pattern' do
 
     it 'can add commands to queue' do
       expect(computer.queue.size).to eq(2)
+    end
+
+    it 'execute commands in order' do
+      result = %Q{
+CalibrateDriverCommand execute!
+TestCompilerCommand execute!
+}
+
+      expect(computer.execute).to eq(result)
     end
   end
 
