@@ -9,12 +9,10 @@ end
 
 class PartyFactory < Party
   def create(occupation)
-    if occupation == :warrior
-      Warrior.new
-    elsif occupation == :mage
-      Mage.new
+    if [:warrior, :mage].include?(occupation)
+      self.class.const_get(occupation.to_s.capitalize).new
     else
-      raise 'Unknown hero type'
+      raise 'Unkown'
     end
   end
 end
