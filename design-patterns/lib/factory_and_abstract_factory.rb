@@ -1,21 +1,39 @@
 class Party
-  attr_reader :members
+  attr_reader :members, :factory
 
-  def initialize(number, occupation)
+  def initialize(factory)
     @members = []
-    number.times { members << create(occupation) }
+    @factory = factory
+  end
+
+  def add_warrior(number)
+    number.times { members << factory.create_warrior }
+  end
+
+  def add_mage(number)
+    number.times { members << factory.create_mage }
   end
 end
 
-class PartyFactory < Party
-  def create(occupation)
-    if [:warrior, :mage].include?(occupation)
-      self.class.const_get(occupation.to_s.capitalize).new
-    else
-      raise 'Unkown'
-    end
+class HeroFactory
+  def create_warrior
+    Warrior.new
+  end
+
+  def create_mage
+    Mage.new
   end
 end
+
+# class PartyFactory < Party
+#   def create(occupation)
+#     if [:warrior, :mage].include?(occupation)
+#       self.class.const_get(occupation.to_s.capitalize).new
+#     else
+#       raise 'Unkown'
+#     end
+#   end
+# end
 
 # class WarriorParty < Party
 #   def create
