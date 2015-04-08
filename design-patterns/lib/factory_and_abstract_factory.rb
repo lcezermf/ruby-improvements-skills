@@ -1,24 +1,36 @@
 class Party
   attr_reader :members
 
-  def initialize(number)
+  def initialize(number, occupation)
     @members = []
-    number.times { members << create }
-    # chamada para create funciona como o Template Method
+    number.times { members << create(occupation) }
   end
 end
 
-class WarriorParty < Party
-  def create
-    Warrior.new
+class PartyFactory < Party
+  def create(occupation)
+    if occupation == :warrior
+      Warrior.new
+    elsif occupation == :mage
+      Mage.new
+    else
+      raise 'Unknown hero type'
+    end
   end
 end
 
-class MageParty < Party
-  def create
-    Mage.new
-  end
-end
+# class WarriorParty < Party
+#   def create
+#     Warrior.new
+#   end
+# end
+
+# class MageParty < Party
+#   def create
+#     Mage.new
+#   end
+# end
+
 ###
 
 class Hero
