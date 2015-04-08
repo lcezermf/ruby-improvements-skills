@@ -3,10 +3,22 @@ class Party
 
   def initialize(number)
     @members = []
-    number.times { members << Warrior.new }
+    number.times { members << create }
+    # chamada para create funciona como o Template Method
   end
 end
 
+class WarriorParty < Party
+  def create
+    Warrior.new
+  end
+end
+
+class MageParty < Party
+  def create
+    Mage.new
+  end
+end
 ###
 
 class Hero
