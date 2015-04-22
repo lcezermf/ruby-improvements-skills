@@ -1,3 +1,5 @@
+# Creational Pattern
+
 class Party
   attr_reader :members, :factory
 

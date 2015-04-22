@@ -1,3 +1,5 @@
+# Behavior Pattern
+
 class Turn
   attr_accessor :moves
 
