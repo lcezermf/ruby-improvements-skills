@@ -3,8 +3,6 @@ require_relative '../lib/builder'
 
 describe 'Builder Pattern' do
   it "creates a board" do
-    pending
-
     tiles = []
     tiles << TileFactory.create_plain_tiles(5)
     tiles << TileFactory.create_trap_tiles(5)
@@ -36,5 +34,12 @@ describe 'Builder Pattern' do
     expect(board.difficulty).to eq(:easy)
     expect(board.tiles.size).to eq(10)
     expect(board.monsters.size).to eq(8)
+  end
+
+  it 'it is a valid board' do
+    builder = BoardBuilder.new(2, 5, :easy)
+    builder.add_tiles(:plain, 5)
+
+    expect { builder.board }.to raise_exception
   end
 end

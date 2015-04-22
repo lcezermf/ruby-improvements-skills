@@ -21,7 +21,14 @@ class BoardBuilder
   end
 
   def board
+    raise 'Invalid' if invalid?
     @board
+  end
+
+  private
+
+  def invalid?
+    @board.tiles.size + @board.monsters.size < @board.width * @board.height
   end
 end
 
