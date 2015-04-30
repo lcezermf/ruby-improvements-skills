@@ -1,5 +1,5 @@
 # Structural Pattern
-class MegaQuest
+class CompositeQuest
   def initialize
     @tasks = []
   end
@@ -17,23 +17,8 @@ class MegaQuest
   attr_reader :tasks
 end
 
-class Quest
-  def initialize
-    @tasks = []
-  end
-
-  def add(task)
-    tasks << task
-  end
-
-  def reward
-    tasks.inject(0) { |sum, task| sum += task.reward }
-  end
-
-  private
-
-  attr_reader :tasks
-end
+class MegaQuest < CompositeQuest; end
+class Quest < CompositeQuest; end
 
 class Encounter
   attr_reader :reward
