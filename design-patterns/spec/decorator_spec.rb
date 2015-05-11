@@ -16,6 +16,18 @@ describe 'Decorator Pattern' do
     end
   end
 
+  context 'magic item' do
+    let(:masterpiece_item) { Item.new false, true  }
+
+    it 'has price 2 times more expansive' do
+      expect(masterpiece_item.price).to eq(common_item.price * 2)
+    end
+
+    it 'has description' do
+      expect(masterpiece_item.description).to eq("#{common_item.description}Masterpiece.")
+    end
+  end
+
   context 'common_item' do
     it 'has prince' do
       expect(common_item.price).to eq(10)
