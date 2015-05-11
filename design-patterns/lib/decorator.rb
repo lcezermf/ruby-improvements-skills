@@ -1,10 +1,12 @@
+require 'forwardable'
+
 class ItemDecorator
+  extend Forwardable
+
+  def_delegator :@item, :use
+
   def initialize(item)
     @item = item
-  end
-
-  def use
-    @item.use
   end
 end
 
