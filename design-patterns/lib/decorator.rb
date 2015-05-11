@@ -8,7 +8,8 @@ class Item
     if is_magic
       @price *= 3
       @description += 'Magic.'
-    elsif is_masterpiece
+    end
+    if is_masterpiece
       @price *= 2
       @description += 'Masterpiece.'
     end
