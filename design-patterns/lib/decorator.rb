@@ -1,14 +1,6 @@
-class MagicItemDecorator
+class ItemDecorator
   def initialize(item)
     @item = item
-  end
-
-  def price
-    @item.price * 3
-  end
-
-  def description
-    "#{@item.description}Magic."
   end
 
   def use
@@ -16,21 +8,23 @@ class MagicItemDecorator
   end
 end
 
-class MasterpieceItemDecorator
-  def initialize(item)
-    @item = item
+class MagicItemDecorator < ItemDecorator
+  def price
+    @item.price * 3
   end
 
+  def description
+    "#{@item.description}Magic."
+  end
+end
+
+class MasterpieceItemDecorator < ItemDecorator
   def price
     @item.price * 2
   end
 
   def description
     "#{@item.description}Masterpiece."
-  end
-
-  def use
-    @item.use
   end
 end
 
