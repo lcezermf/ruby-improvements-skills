@@ -12,10 +12,9 @@ end
 class ComputerProxy
   extend Forwardable
 
-  def_delegators :@real_object, :add
+  def_delegators :real_object, :add
 
-  def initialize(real_object, hero)
-    @real_object = real_object
+  def initialize(hero)
     @hero = hero
   end
 
@@ -25,6 +24,10 @@ class ComputerProxy
   end
 
   private
+
+  def real_object
+    @real_object ||= Computer.new
+  end
 
   def check_access
     raise 'You have no access' unless @hero.keywords.include?(:computer)
