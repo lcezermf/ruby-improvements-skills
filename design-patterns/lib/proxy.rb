@@ -1,16 +1,35 @@
 
 require 'forwardable'
 
-class ComputerProxy
-  extend Forwardable
+class Hero
+  attr_accessor :keywords
 
-  def_delegators :@real_object, :add, :execute
-
-  def initialize(real_object)
-    @real_object = real_object
+  def initialize
+    @keywords = []
   end
 end
 
+class ComputerProxy
+  extend Forwardable
+
+  def_delegators :@real_object, :add
+
+  def initialize(real_object, hero)
+    @real_object = real_object
+    @hero = hero
+  end
+
+  def execute
+    check_access
+    @real_object.execute
+  end
+
+  private
+
+  def check_access
+    raise 'You have no access' unless @hero.keywords.include?(:computer)
+  end
+end
 
 class Computer
   attr_reader :queue
