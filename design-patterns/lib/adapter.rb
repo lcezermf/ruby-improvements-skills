@@ -1,3 +1,5 @@
+# Structural Pattern
+
 class AdapterQuest
   attr_accessor :hero
 

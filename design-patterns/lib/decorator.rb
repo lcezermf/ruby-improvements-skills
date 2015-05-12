@@ -1,3 +1,4 @@
+# Structural Pattern
 require 'forwardable'
 
 class ItemDecorator
